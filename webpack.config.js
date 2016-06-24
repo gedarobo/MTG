@@ -6,7 +6,8 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/dist/'
   },
   module: {
     loaders: [
@@ -18,15 +19,21 @@ module.exports = {
         query: {
           presets: ['react', 'es2015']
         }
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'raw'],
+        include: __dirname
       }
     ]
   },
   devServer: {
     contentBase: __dirname,
+    port: 3000,
     proxy: {
-      '/api/*': {
+      '/mtg/*': {
         changeOrigin: true,
-        target: 'https://api.deckbrew.com/mtg/'
+        target: 'https://api.deckbrew.com/'
       }
     }
   }

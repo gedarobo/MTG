@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import {findDOMNode} from 'react-dom';
+import React, {Component} from 'react'
+import {findDOMNode} from 'react-dom'
 
 class CardSearch extends Component {
     searchCard() {
-        const input = findDOMNode(this.refs.input);
-        const searchKeyword = input.value.trim();
-        this.props.onSearchClick(searchKeyword);
+        const input = findDOMNode(this.refs.input)
+        const searchKeyword = input.value.trim()
+        this.props.onSearchClick(searchKeyword)
     }
 
     enterKey(event) {
         if (event.keyCode === 13) {
-            this.searchCard();
+            this.searchCard()
         }
     }
 
     componentDidMount() {
-        const input = findDOMNode(this.refs.input);
-        input.focus();
+        const input = findDOMNode(this.refs.input)
+        input.focus()
     }
 
     render() {
@@ -29,8 +29,8 @@ class CardSearch extends Component {
                     </fieldset>
                 </div>
             </header>
-        );
+        )
     }
 };
 
-export default CardSearch;
+export default CardSearch

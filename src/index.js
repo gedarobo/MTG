@@ -1,9 +1,16 @@
-import React from 'react';
-import {render} from 'react-dom';
-import DeckManager from './components/DeckManager';
-import './styles/deckManager.css';
+import 'babel-polyfill'
+import React from 'react'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import App from './components/App'
+import configureStore from './store/configureStore'
+import './styles/deckManager.css'
+
+const store = configureStore();
 
 render(
-    <DeckManager/>,
+    <Provider store={store}>
+        <App/>
+    </Provider>,
     document.getElementById('app')
-);
+)

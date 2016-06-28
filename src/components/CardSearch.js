@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import {findDOMNode} from 'react-dom'
 
-class CardSearch extends Component {
+export default class CardSearch extends Component {
     searchCard() {
         const input = findDOMNode(this.refs.input)
         const searchKeyword = input.value.trim()
@@ -33,4 +33,6 @@ class CardSearch extends Component {
     }
 };
 
-export default CardSearch
+CardSearch.propTypes = {
+    onSearchClick: PropTypes.func.isRequired
+}

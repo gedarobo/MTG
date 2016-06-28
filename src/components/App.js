@@ -13,7 +13,7 @@ class App extends Component {
         return (
             <div>
                 <CardSearch onSearchClick={actions.fetchCards} />
-                <CardList cards={cards} actions={actions} />
+                <CardList cards={cards} />
                 <Navigation/>
             </div>
         )

@@ -29998,7 +29998,7 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(_CardSearch2.default, { onSearchClick: actions.fetchCards }),
-	                _react2.default.createElement(_CardList2.default, { cards: cards, actions: actions }),
+	                _react2.default.createElement(_CardList2.default, { cards: cards }),
 	                _react2.default.createElement(_Navigation2.default, null)
 	            );
 	        }
@@ -30108,9 +30108,12 @@
 	    return CardSearch;
 	}(_react.Component);
 
+	exports.default = CardSearch;
 	;
 
-	exports.default = CardSearch;
+	CardSearch.propTypes = {
+	    onSearchClick: _react.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 492 */
@@ -30156,7 +30159,7 @@
 	                'ul',
 	                null,
 	                this.props.cards.map(function (card) {
-	                    return _react2.default.createElement(_Card2.default, { key: card.id, data: card });
+	                    return _react2.default.createElement(_Card2.default, { key: card.id, card: card });
 	                })
 	            );
 	        }
@@ -30165,9 +30168,12 @@
 	    return CardList;
 	}(_react.Component);
 
+	exports.default = CardList;
 	;
 
-	exports.default = CardList;
+	CardList.propTypes = {
+	    cards: _react.PropTypes.array.isRequired
+	};
 
 /***/ },
 /* 493 */
@@ -30214,22 +30220,22 @@
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "card_img" },
-	                        _react2.default.createElement("img", { src: this.props.data.editions[0].image_url })
+	                        _react2.default.createElement("img", { src: this.props.card.editions[0].image_url })
 	                    ),
 	                    _react2.default.createElement(
 	                        "div",
 	                        { style: { padding: '0 0 0 7rem' } },
-	                        this.props.data.name
+	                        this.props.card.name
 	                    ),
 	                    _react2.default.createElement(
 	                        "div",
 	                        { style: { padding: '0 0 0 7rem' } },
-	                        this.props.data.types.join(' ')
+	                        this.props.card.types.join(' ')
 	                    ),
 	                    _react2.default.createElement(
 	                        "div",
 	                        { style: { padding: '0 0 0 7rem' } },
-	                        this.props.data.cost
+	                        this.props.card.cost
 	                    )
 	                )
 	            );
@@ -30239,9 +30245,12 @@
 	    return Card;
 	}(_react.Component);
 
-	;
-
 	exports.default = Card;
+
+
+	Card.propTypes = {
+	    card: _react.PropTypes.object.isRequired
+	};
 
 /***/ },
 /* 494 */
@@ -30285,8 +30294,6 @@
 
 	    return Navigation;
 	}(_react.Component);
-
-	;
 
 	exports.default = Navigation;
 

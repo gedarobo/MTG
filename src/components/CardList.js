@@ -1,16 +1,18 @@
-import React, {Component} from 'react';
-import Card from './Card';
+import React, {Component, PropTypes} from 'react'
+import Card from './Card'
 
-class CardList extends Component {
+export default class CardList extends Component {
     render() {
         return (
             <ul>
                 {this.props.cards.map(card =>
-                    <Card key={card.id} data={card}/>
+                    <Card key={card.id} card={card}/>
                 )}
             </ul>
         );
     }
 };
 
-export default CardList;
+CardList.propTypes = {
+    cards: PropTypes.array.isRequired
+}

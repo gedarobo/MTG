@@ -1,10 +1,13 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import search from '../reducers'
+import thunkMiddleware from 'redux-thunk';
 
 export default function configureStore() {
-    const store = createStore(search)
+    const createStoreWithMiddleware = applyMiddleware(
+        thunkMiddleware
+    )(createStore);
 
-    store.subscribe(() => console.log(store.getState()))
+    const store = createStoreWithMiddleware(search)
 
     return store
 }

@@ -29897,16 +29897,6 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	var getCardList = function getCardList(name) {
-	    fetch('/mtg/cards?name=' + name).then(function (res) {
-	        return res.json();
-	    }).then(function (data) {
-	        return data;
-	    }).catch(function (e) {
-	        return console.log(e);
-	    });
-	};
-
 	var initialState = {
 	    cards: []
 	};
@@ -29916,16 +29906,12 @@
 	    var action = arguments[1];
 
 	    switch (action.type) {
-	        case types.SEARCH_NAME:
-	            fetch('/mtg/cards?name=' + name).then(function (res) {
-	                return res.json();
-	            }).then(function (data) {
-	                console.log('@');
-	                return Object.assign({}, state, {
-	                    cards: data
-	                });
-	            }).catch(function (e) {
-	                return console.log(e);
+	        case types.REQUEST_CARDS:
+	            return Object.assign({}, state, {});
+
+	        case types.RECEIVE_CARDS:
+	            return Object.assign({}, state, {
+	                cards: action.cards
 	            });
 
 	        default:
@@ -29942,7 +29928,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var SEARCH_NAME = exports.SEARCH_NAME = 'SEARCH_NAME';
+	var REQUEST_CARDS = exports.REQUEST_CARDS = 'REQUEST_CARDS';
+	var RECEIVE_CARDS = exports.RECEIVE_CARDS = 'RECEIVE_CARDS';
 
 /***/ },
 /* 490 */
@@ -30010,7 +29997,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_CardSearch2.default, { onSearchClick: actions.searchCardByName }),
+	                _react2.default.createElement(_CardSearch2.default, { onSearchClick: actions.fetchCards }),
 	                _react2.default.createElement(_CardList2.default, { cards: cards, actions: actions }),
 	                _react2.default.createElement(_Navigation2.default, null)
 	            );
@@ -30312,7 +30299,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.searchCardByName = searchCardByName;
+	exports.fetchCards = fetchCards;
 
 	var _ActionTypes = __webpack_require__(489);
 
@@ -30320,10 +30307,32 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	function searchCardByName(name) {
+	function requestCards(name) {
 	    return {
-	        type: types.SEARCH_NAME,
+	        type: types.REQUEST_CARDS,
 	        name: name
+	    };
+	}
+
+	function receiveCards(name, data) {
+	    return {
+	        type: types.RECEIVE_CARDS,
+	        name: name,
+	        cards: data
+	    };
+	}
+
+	function fetchCards(name) {
+	    return function (dispatch) {
+	        dispatch(requestCards(name));
+
+	        return fetch('/mtg/cards?name=' + name).then(function (res) {
+	            return res.json();
+	        }).then(function (data) {
+	            return dispatch(receiveCards(name, data));
+	        }).catch(function (e) {
+	            return console.log(e);
+	        });
 	    };
 	}
 
@@ -30628,17 +30637,47 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
+	var _reduxThunk = __webpack_require__(500);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function configureStore() {
-	    var store = (0, _redux.createStore)(_reducers2.default);
+	    var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default)(_redux.createStore);
 
-	    store.subscribe(function () {
-	        return console.log(store.getState());
-	    });
+	    var store = createStoreWithMiddleware(_reducers2.default);
 
 	    return store;
 	}
+
+/***/ },
+/* 500 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+
+	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);

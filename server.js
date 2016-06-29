@@ -18,7 +18,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler))
 
 app.use('/mtg/*', function(req, res) {
-    req.url = req.baseUrl
+    req.url = req.originalUrl
     apiProxy.web(req, res, {
         changeOrigin: true,
         target: 'https://api.deckbrew.com/'

@@ -11,7 +11,7 @@ function receiveCards(name, data) {
     return {
         type: types.RECEIVE_CARDS,
         name,
-        cards: data
+        cards: [...data]
     }
 }
 

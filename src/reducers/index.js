@@ -1,20 +1,13 @@
-import * as types from '../constants/ActionTypes';
+import {combineReducers} from 'redux'
+import * as types from '../constants/ActionTypes'
 
-const initialState = {
-    cards: []
-}
-
-export default function search(state = initialState, action) {
+function cards(state = [], action) {
     switch (action.type) {
         case types.REQUEST_CARDS:
-            return Object.assign({}, state, {
-
-            })
+            return state
 
         case types.RECEIVE_CARDS:
-            return Object.assign({}, state, {
-                cards: action.cards
-            })
+            return action.cards
 
         default:
             return state
@@ -22,4 +15,8 @@ export default function search(state = initialState, action) {
 }
 
 
+const rootReducer = combineReducers({
+    cards
+})
 
+export default rootReducer

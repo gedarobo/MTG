@@ -63,15 +63,15 @@
 
 	var _reactRedux = __webpack_require__(466);
 
-	var _App = __webpack_require__(490);
+	var _App = __webpack_require__(488);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _configureStore = __webpack_require__(499);
+	var _configureStore = __webpack_require__(495);
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
-	__webpack_require__(496);
+	__webpack_require__(498);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29889,57 +29889,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = search;
-
-	var _ActionTypes = __webpack_require__(489);
-
-	var types = _interopRequireWildcard(_ActionTypes);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	var initialState = {
-	    cards: []
-	};
-
-	function search() {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	    var action = arguments[1];
-
-	    switch (action.type) {
-	        case types.REQUEST_CARDS:
-	            return Object.assign({}, state, {});
-
-	        case types.RECEIVE_CARDS:
-	            return Object.assign({}, state, {
-	                cards: action.cards
-	            });
-
-	        default:
-	            return state;
-	    }
-	}
-
-/***/ },
-/* 489 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var REQUEST_CARDS = exports.REQUEST_CARDS = 'REQUEST_CARDS';
-	var RECEIVE_CARDS = exports.RECEIVE_CARDS = 'RECEIVE_CARDS';
-
-/***/ },
-/* 490 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -29951,19 +29900,19 @@
 
 	var _reactRedux = __webpack_require__(466);
 
-	var _CardSearch = __webpack_require__(491);
+	var _CardSearch = __webpack_require__(489);
 
 	var _CardSearch2 = _interopRequireDefault(_CardSearch);
 
-	var _CardList = __webpack_require__(492);
+	var _CardList = __webpack_require__(490);
 
 	var _CardList2 = _interopRequireDefault(_CardList);
 
-	var _Navigation = __webpack_require__(494);
+	var _Navigation = __webpack_require__(492);
 
 	var _Navigation2 = _interopRequireDefault(_Navigation);
 
-	var _actions = __webpack_require__(495);
+	var _actions = __webpack_require__(493);
 
 	var Actions = _interopRequireWildcard(_actions);
 
@@ -30027,7 +29976,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
 
 /***/ },
-/* 491 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30116,7 +30065,7 @@
 	};
 
 /***/ },
-/* 492 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30131,7 +30080,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Card = __webpack_require__(493);
+	var _Card = __webpack_require__(491);
 
 	var _Card2 = _interopRequireDefault(_Card);
 
@@ -30176,7 +30125,7 @@
 	};
 
 /***/ },
-/* 493 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30253,7 +30202,7 @@
 	};
 
 /***/ },
-/* 494 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30298,7 +30247,7 @@
 	exports.default = Navigation;
 
 /***/ },
-/* 495 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30308,11 +30257,13 @@
 	});
 	exports.fetchCards = fetchCards;
 
-	var _ActionTypes = __webpack_require__(489);
+	var _ActionTypes = __webpack_require__(494);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function requestCards(name) {
 	    return {
@@ -30325,7 +30276,7 @@
 	    return {
 	        type: types.RECEIVE_CARDS,
 	        name: name,
-	        cards: data
+	        cards: [].concat(_toConsumableArray(data))
 	    };
 	}
 
@@ -30344,16 +30295,125 @@
 	}
 
 /***/ },
+/* 494 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var REQUEST_CARDS = exports.REQUEST_CARDS = 'REQUEST_CARDS';
+	var RECEIVE_CARDS = exports.RECEIVE_CARDS = 'RECEIVE_CARDS';
+
+/***/ },
+/* 495 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = configureStore;
+
+	var _redux = __webpack_require__(473);
+
+	var _reducers = __webpack_require__(496);
+
+	var _reducers2 = _interopRequireDefault(_reducers);
+
+	var _reduxThunk = __webpack_require__(497);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function configureStore(preloadedState) {
+	    var store = (0, _redux.createStore)(_reducers2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+
+	    return store;
+	}
+
+/***/ },
 /* 496 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _redux = __webpack_require__(473);
+
+	var _ActionTypes = __webpack_require__(494);
+
+	var types = _interopRequireWildcard(_ActionTypes);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function cards() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case types.REQUEST_CARDS:
+	            return state;
+
+	        case types.RECEIVE_CARDS:
+	            return action.cards;
+
+	        default:
+	            return state;
+	    }
+	}
+
+	var rootReducer = (0, _redux.combineReducers)({
+	    cards: cards
+	});
+
+	exports.default = rootReducer;
+
+/***/ },
+/* 497 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+
+	exports['default'] = thunk;
+
+/***/ },
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(497);
+	var content = __webpack_require__(499);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(498)(content, {});
+	var update = __webpack_require__(500)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -30370,13 +30430,13 @@
 	}
 
 /***/ },
-/* 497 */
+/* 499 */
 /***/ function(module, exports) {
 
 	module.exports = "@charset \"UTF-8\";\nhtml, body {\n    height: 100%;\n}\n\nbody, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, form, fieldset, p, button {\n    margin: 0;\n    padding: 0;\n}\n\nbody {\n    background: #f0f0f0;\n    -webkit-text-size-adjust: none;\n    overflow-y: auto;\n    position: static;\n    top: 0px;\n}\n\nimg, fieldset {\n    border: 0 none;\n}\n\nul, ol, li {\n    list-style: none;\n}\n\na {\n    color: #000;\n    text-decoration: none;\n    text-overflow: ellipsis;\n    -o-text-overflow: ellipsis;\n}\n\na:link, a:hover, a:active {\n    text-decoration: none;\n}\n\ntextarea {\n    resize: none;\n}\n\ntable {\n    border-spacing: 0;\n    border-collapse: collapse;\n    table-layout: fixed;\n}\n\nheader {\n    width: 100%;\n}\n\n:focus {\n    outline: 0;\n}\n\n.search_area {\n    position: relative;\n    padding: 15px 80px 15px 15px;\n    background-color: #fff;\n}\n\n.search_input {\n    height: 28px;\n    width: 100%;\n    font-size: 20px;\n    border-bottom: 2px solid #aaa;\n    border-top: 0;\n    border-left: 0;\n    border-right: 0;\n}\n\n.search_btn {\n    position: absolute;\n    top: 15px;\n    right: 10px;\n    height: 34px;\n    width: 60px;\n    border: 1px;\n    font-size: 13px;\n}\n\n.card_item {\n    background-color: #fff;\n    height: 155px;\n    margin-bottom: 5px;\n}\n\n.card_content {\n    position: relative;\n}\n\n.card_img {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 112px;\n    height: 155px;\n    clip-path: rect(5px 107px 100px 5px);\n}\n\n.card_img img {\n    width: 112px;\n    height: 155px;\n}\n\n.nav {\n    position: fixed;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 60px;\n    background-color: #ddd;\n}"
 
 /***/ },
-/* 498 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -30626,65 +30686,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 499 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = configureStore;
-
-	var _redux = __webpack_require__(473);
-
-	var _reducers = __webpack_require__(488);
-
-	var _reducers2 = _interopRequireDefault(_reducers);
-
-	var _reduxThunk = __webpack_require__(500);
-
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function configureStore() {
-	    var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default)(_redux.createStore);
-
-	    var store = createStoreWithMiddleware(_reducers2.default);
-
-	    return store;
-	}
-
-/***/ },
-/* 500 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	function createThunkMiddleware(extraArgument) {
-	  return function (_ref) {
-	    var dispatch = _ref.dispatch;
-	    var getState = _ref.getState;
-	    return function (next) {
-	      return function (action) {
-	        if (typeof action === 'function') {
-	          return action(dispatch, getState, extraArgument);
-	        }
-
-	        return next(action);
-	      };
-	    };
-	  };
-	}
-
-	var thunk = createThunkMiddleware();
-	thunk.withExtraArgument = createThunkMiddleware;
-
-	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);

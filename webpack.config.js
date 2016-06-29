@@ -1,14 +1,20 @@
 var path = require('path');
+var webpack = require('webpack')
 
 module.exports = {
   entry: [
-    './src/index'
+      'webpack-hot-middleware/client',
+      './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/static/'
   },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     loaders: [
       {
@@ -26,15 +32,5 @@ module.exports = {
         include: __dirname
       }
     ]
-  },
-  devServer: {
-    contentBase: __dirname,
-    port: 3000,
-    proxy: {
-      '/mtg/*': {
-        changeOrigin: true,
-        target: 'https://api.deckbrew.com/'
-      }
-    }
   }
-};
+}

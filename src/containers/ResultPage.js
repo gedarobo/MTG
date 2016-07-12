@@ -1,27 +1,22 @@
 import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import CardSearch from '../components/CardSearch'
 import CardList from '../components/CardList'
-import Navigation from '../components/Navigation'
-import * as Actions from '../actions'
 
-class App extends Component {
+class ResultPage extends Component {
     render() {
-        const { children } = this.props
+        const {cards} = this.props
 
         return (
             <div>
-                <Navigation/>
-                { children }
+                <CardList cards={cards} />
             </div>
         )
     }
 }
 
-App.propTypes = {
-    cards: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+ResultPage.propTypes = {
+    cards: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
@@ -32,11 +27,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
     }
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(App)
+)(ResultPage)

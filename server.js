@@ -25,7 +25,7 @@ app.use('/mtg/*', function(req, res) {
     })
 })
 
-app.get('/', function(req, res) {
+app.use(function(req, res) {
     res.sendFile(__dirname + '/index.html')
 })
 

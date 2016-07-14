@@ -2,35 +2,45 @@ import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import CardList from '../components/CardList'
+import { fetchCards } from '../actions'
 
 class ResultPage extends Component {
+    componentDidMount() {
+        this.props.fetchCards(this.props.params.name)
+    }
+
     render() {
-        const {cards} = this.props
+        const { cards, editions } = this.props
 
         return (
             <div>
-                <CardList cards={cards} />
+                <CardList cards={cards} editions={editions} />
             </div>
         )
     }
 }
 
 ResultPage.propTypes = {
-    cards: PropTypes.array.isRequired
+    cards: PropTypes.array.isRequired,
+    editions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
+    const {
+        cards: {
+            entities,
+            result
+        }
+    } = state
+    const results = result || []
+    const editions = entities && entities.editions || {}
+
     return {
-        cards: state.cards
+        cards: results.map(card => entities.cardList[card]),
+        editions
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ResultPage)
+export default connect(mapStateToProps, {
+    fetchCards
+})(ResultPage)

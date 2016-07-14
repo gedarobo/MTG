@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-const Card = ({ card }) => (
+const Card = ({ card, editions }) => (
     <li className="card_item">
         <div className="card_content">
             <div className="card_img">
-                <img src={card.editions[0].image_url} />
+                <img src={editions[card.editions[0]].image_url} />
             </div>
             <div style={{padding: '0 0 0 7rem'}}>{card.name}</div>
             <div style={{padding: '0 0 0 7rem'}}>{card.types.join(' ')}</div>
@@ -16,5 +16,6 @@ const Card = ({ card }) => (
 export default Card;
 
 Card.propTypes = {
-    card: PropTypes.object.isRequired
+    card: PropTypes.object.isRequired,
+    editions: PropTypes.object.isRequired
 }

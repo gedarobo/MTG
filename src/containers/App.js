@@ -6,7 +6,7 @@ import CardList from '../components/CardList'
 import Navigation from '../components/Navigation'
 import * as Actions from '../actions'
 
-class App extends Component {
+export default class App extends Component {
     render() {
         const { children } = this.props
 
@@ -18,25 +18,3 @@ class App extends Component {
         )
     }
 }
-
-App.propTypes = {
-    cards: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
-}
-
-function mapStateToProps(state) {
-    return {
-        cards: state.cards
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(Actions, dispatch)
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App)

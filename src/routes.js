@@ -7,6 +7,6 @@ import ResultPage from './containers/ResultPage'
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={SearchPage} />
-        <Route path="/result" component={ResultPage} />
+        <Route path="/result/:name" component={ResultPage} />
     </Route>
 )

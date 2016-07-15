@@ -28,10 +28,22 @@ export function fetchCards(name) {
     }
 }
 
-const cardScehma = new Schema('cardList')
+const cardScehma = new Schema('cardList', {
+    assignEntity: (output, key, value, input) => {
+        if (key === 'editions') {
+            const newValue = []
+            value.forEach(edition => {
+                if (edition !== 0) {
+                    newValue.push(edition)
+                }
+            })
+            output[key] = newValue
+        }
+    }
+})
 
 const editionSchema = new Schema('editions', {
-    idAttribute: edition => edition.multiverse_id + '_' + edition.set_id
+    idAttribute: edition => edition.multiverse_id
 })
 
 cardScehma.define({

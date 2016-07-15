@@ -12,8 +12,8 @@ export default class App extends Component {
 
         return (
             <div>
-                <Navigation/>
                 { children }
+                <Navigation/>
             </div>
         )
     }

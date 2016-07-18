@@ -53,6 +53,10 @@ header {
     outline: 0;
 }
 
+#app {
+    margin-bottom: 60px;
+}
+
 .search_area {
     position: relative;
     padding: 15px 80px 15px 15px;

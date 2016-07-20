@@ -3,21 +3,30 @@ import Card from './Card'
 
 export default class CardList extends Component {
     render() {
-        const { cards, editions } = this.props
+        const { cards, editions, editionFilter } = this.props
 
         return (
             <ul>
-                {cards.map(card =>
-                    card.editions.map(edition =>
-                        <Card card={card} edition={editions[edition]} />
-                    )
-                )}
+                {(() => {
+                    if (editionFilter) {
+                        return cards.map(card =>
+                            card.editions.map(edition =>
+                                <Card card={card} edition={editions[edition]}/>
+                            )
+                        )
+                    } else {
+                        return cards.map(card =>
+                            <Card key={card.id} card={card} edition={editions[card.editions[0]]}/>
+                        )
+                    }
+                })()}
             </ul>
-        );
+        )
     }
-};
+}
 
 CardList.propTypes = {
     cards: PropTypes.array.isRequired,
-    editions: PropTypes.object.isRequired
+    editions: PropTypes.object.isRequired,
+    editionFilter: PropTypes.bool.isRequired
 }

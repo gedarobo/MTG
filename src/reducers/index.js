@@ -15,9 +15,22 @@ function cards(state = {}, action) {
     }
 }
 
+function filter(state = { showAllEdition: false }, action) {
+    switch (action.type) {
+        case types.TOGGLE_EDITION_FILTER:
+            return Object.assign({}, state, {
+                showAllEdition: !state.showAllEdition
+            })
+
+        default:
+            return state
+    }
+}
+
 
 const rootReducer = combineReducers({
     cards,
+    filter,
     routing
 })
 

@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import CardList from '../components/CardList'
 import { fetchCards } from '../actions'
 
@@ -9,17 +9,12 @@ class ResultPage extends Component {
         this.props.fetchCards(this.props.params.name)
     }
 
-    componentWillUnmount() {
-        //this.props
-        console.log('asdf')
-    }
-
     render() {
-        const { cards, editions } = this.props
+        const { cards, editions, filter } = this.props
 
         return (
             <div>
-                <CardList cards={cards} editions={editions} />
+                <CardList cards={cards} editions={editions} editionFilter={filter.showAllEdition} />
             </div>
         )
     }
@@ -42,7 +37,8 @@ function mapStateToProps(state) {
 
     return {
         cards: results.map(card => entities.cardList[card]),
-        editions
+        editions,
+        filter: state.filter
     }
 }
 

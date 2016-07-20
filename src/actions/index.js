@@ -49,3 +49,9 @@ const editionSchema = new Schema('editions', {
 cardScehma.define({
     editions: arrayOf(editionSchema)
 })
+
+export function toggleEditionFilter() {
+    return {
+        type: types.TOGGLE_EDITION_FILTER
+    }
+}

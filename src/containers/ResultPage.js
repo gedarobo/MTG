@@ -9,6 +9,11 @@ class ResultPage extends Component {
         this.props.fetchCards(this.props.params.name)
     }
 
+    componentWillUnmount() {
+        //this.props
+        console.log('asdf')
+    }
+
     render() {
         const { cards, editions } = this.props
 

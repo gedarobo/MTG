@@ -8,7 +8,9 @@ export default class CardList extends Component {
         return (
             <ul>
                 {cards.map(card =>
-                    <Card key={card.id} card={card} editions={editions} />
+                    card.editions.map(edition =>
+                        <Card card={card} edition={editions[edition]} />
+                    )
                 )}
             </ul>
         );

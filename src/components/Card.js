@@ -1,14 +1,22 @@
 import React, { PropTypes } from 'react';
 
-const Card = ({ card, editions }) => (
+const Card = ({ card, edition }) => (
     <li className="card_item">
         <div className="card_content">
             <div className="card_img">
-                <img src={editions[card.editions[0]].image_url} />
+                <div style={{
+                    width: '100%',
+                    height: '100%',
+                    background: 'url(' + edition.image_url + ')',
+                    backgroundPosition: '-19px -40px',
+                    borderRadius: '3%'
+                }}></div>
             </div>
-            <div style={{padding: '0 0 0 7rem'}}>{card.name}</div>
-            <div style={{padding: '0 0 0 7rem'}}>{card.types.join(' ')}</div>
-            <div style={{padding: '0 0 0 7rem'}}>{card.cost}</div>
+            <div className="card_info">
+                <div>{card.name}</div>
+                <div>{card.types.join(' ')}</div>
+                <div>{card.cost}</div>
+            </div>
         </div>
     </li>
 )
@@ -17,5 +25,5 @@ export default Card;
 
 Card.propTypes = {
     card: PropTypes.object.isRequired,
-    editions: PropTypes.object.isRequired
+    edition: PropTypes.object.isRequired
 }

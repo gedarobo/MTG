@@ -85,8 +85,12 @@ header {
 
 .card_item {
     background-color: #fff;
-    height: 155px;
-    margin-bottom: 5px;
+    height: 133px;
+    /*margin-bottom: 5px;*/
+}
+
+.card_item:nth-child(odd) {
+    background-color: #ddd;
 }
 
 .card_content {
@@ -97,14 +101,12 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    width: 112px;
-    height: 155px;
-    clip-path: rect(5px 107px 100px 5px);
+    width: 185px;
+    height: 133px;
 }
 
-.card_img img {
-    width: 112px;
-    height: 155px;
+.card_info {
+    padding-left: 190px
 }
 
 .nav {

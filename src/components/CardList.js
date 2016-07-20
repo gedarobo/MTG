@@ -10,13 +10,13 @@ export default class CardList extends Component {
                 {(() => {
                     if (editionFilter) {
                         return cards.map(card =>
-                            card.editions.map(edition =>
+                            card.editions.sort((a, b) => a - b).map(edition =>
                                 <Card card={card} edition={editions[edition]}/>
                             )
                         )
                     } else {
                         return cards.map(card =>
-                            <Card key={card.id} card={card} edition={editions[card.editions[0]]}/>
+                            <Card key={card.id} card={card} edition={editions[card.editions.sort((a, b) => b - a)[0]]}/>
                         )
                     }
                 })()}

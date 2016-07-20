@@ -16,6 +16,7 @@ const Card = ({ card, edition }) => (
                 <div>{card.name}</div>
                 <div>{card.types.join(' ')}</div>
                 <div>{card.cost}</div>
+                <div>{edition.set}</div>
             </div>
         </div>
     </li>

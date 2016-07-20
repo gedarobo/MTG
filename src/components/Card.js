@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
+import { browserHistory } from 'react-router'
 
 const Card = ({ card, edition }) => (
-    <li className="card_item">
+    <li className="card_item" onClick={() => { browserHistory.push(`/detail/${card.id}`) }}>
         <div className="card_content">
             <div className="card_img">
                 <div style={{

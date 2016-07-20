@@ -2,6 +2,19 @@ import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
 import * as types from '../constants/ActionTypes'
 
+function detail(state = {}, action) {
+    switch (action.type) {
+        case types.REQUEST_DETAIL:
+            return state
+
+        case types.RECEIVE_DETAIL:
+            return action.detail
+
+        default:
+            return state
+    }
+}
+
 function cards(state = {}, action) {
     switch (action.type) {
         case types.REQUEST_CARDS:
@@ -29,6 +42,7 @@ function filter(state = { showAllEdition: false }, action) {
 
 
 const rootReducer = combineReducers({
+    detail,
     cards,
     filter,
     routing

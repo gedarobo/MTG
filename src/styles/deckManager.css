@@ -117,3 +117,9 @@ header {
     height: 60px;
     background-color: #ddd;
 }
+
+.nav button {
+    width: 100px;
+    height: 56px;
+    margin: 2px;
+}

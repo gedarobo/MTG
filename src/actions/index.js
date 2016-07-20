@@ -1,5 +1,31 @@
 import { Schema, arrayOf, normalize } from 'normalizr'
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes'
+
+function requestDetail(id) {
+    return {
+        type: types.REQUEST_DETAIL,
+        id
+    }
+}
+
+function receiveDetail(id, detail) {
+    return {
+        type: types.RECEIVE_DETAIL,
+        id,
+        detail
+    }
+}
+
+export function fetchDetail(id) {
+    return dispatch => {
+        dispatch(requestDetail(id))
+
+        return fetch(`/mtg/cards/${id}`)
+            .then(res => res.json())
+            .then(data => dispatch(receiveDetail(id, normalize(data, cardScehma))))
+            .catch(e => console.log(e));
+    }
+}
 
 function requestCards(name) {
     return {
@@ -8,11 +34,11 @@ function requestCards(name) {
     }
 }
 
-function receiveCards(name, data) {
+function receiveCards(name, cards) {
     return {
         type: types.RECEIVE_CARDS,
         name,
-        cards: data
+        cards
     }
 }
 

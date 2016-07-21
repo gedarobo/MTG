@@ -14,7 +14,10 @@ class ResultPage extends Component {
 
         return (
             <div>
-                <CardList cards={cards} editions={editions} editionFilter={filter.showAllEdition} />
+                {cards.length === 0 ?
+                    'No Result' :
+                    <CardList cards={cards} editions={editions} editionFilter={filter.showAllEdition}/>
+                }
             </div>
         )
     }

@@ -9,6 +9,6 @@ export default (
     <Route path="/" component={App}>
         <IndexRoute component={SearchPage} />
         <Route path="/result/:name" component={ResultPage} />
-        <Route path="/detail/:id" component={DetailPage} />
+        <Route path="/detail/:id/:multiverseId" component={DetailPage} />
     </Route>
 )

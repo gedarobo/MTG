@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { browserHistory } from 'react-router'
 
 const Card = ({ card, edition }) => (
-    <li className="card_item" onClick={() => { browserHistory.push(`/detail/${card.id}`) }}>
+    <li className="card_item" onClick={() => { browserHistory.push(`/detail/${card.id}/${edition.multiverse_id}`) }}>
         <div className="card_content">
             <div className="card_img">
                 <div style={{

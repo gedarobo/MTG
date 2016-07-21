@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { fetchDetail } from '../actions'
+import Detail from '../components/Detail'
 
 class DetailPage extends Component {
     componentDidMount() {
@@ -8,13 +9,13 @@ class DetailPage extends Component {
     }
 
     render() {
-        const { detail } = this.props
+        const { detail, edition } = this.props
 
-        console.log(detail)
+        console.log(detail, edition)
 
         return (
             <div>
-                <div></div>
+                <Detail detail={detail} edition={edition} />
             </div>
         )
     }
@@ -32,7 +33,8 @@ function mapStateToProps(state, ownProps) {
     } = state
 
     return {
-        detail: entities && entities.cardList[ownProps.params.id] || {}
+        detail: entities && entities.cardList[ownProps.params.id] || {},
+        edition: entities && entities.editions[ownProps.params.multiverseId] || {}
     }
 }
 

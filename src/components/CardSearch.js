@@ -23,9 +23,12 @@ export default class CardSearch extends Component {
         return (
             <header>
                 <div className="search_area">
+                    <button className="search_btn" onClick={this.searchCard.bind(this)}>SEARCH</button>
                     <fieldset>
+                        <label>Name</label>
                         <input className="search_input" type="text" ref="input" onKeyUp={this.enterKey.bind(this)}/>
-                        <button className="search_btn" onClick={this.searchCard.bind(this)}>SEARCH</button>
+                        <label>Oracle</label>
+                        <input className="search_input" type="text" ref="input" onKeyUp={this.enterKey.bind(this)}/>
                     </fieldset>
                 </div>
             </header>

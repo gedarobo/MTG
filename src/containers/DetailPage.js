@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import { fetchDetail } from '../actions'
 import Detail from '../components/Detail'
 
@@ -11,10 +12,11 @@ class DetailPage extends Component {
     render() {
         const { detail, edition } = this.props
 
-        console.log(detail, edition)
-
         return (
             <div>
+                <div>
+                    <button onClick={() => browserHistory.push(`/result/${detail.name}`) }>List</button>
+                </div>
                 <Detail detail={detail} edition={edition} />
             </div>
         )

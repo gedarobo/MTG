@@ -27,29 +27,29 @@ export function fetchDetail(id) {
     }
 }
 
-function requestCards(name) {
+function requestCards(query) {
     return {
         type: types.REQUEST_CARDS,
-        name
+        query
     }
 }
 
-function receiveCards(name, cards) {
+function receiveCards(query, cards) {
     return {
         type: types.RECEIVE_CARDS,
-        name,
+        query,
         cards
     }
 }
 
 
-export function fetchCards(name) {
+export function fetchCards(query) {
     return dispatch => {
-        dispatch(requestCards(name))
+        dispatch(requestCards(query))
 
-        return fetch(`/mtg/cards?name=${name}`)
+        return fetch(`/mtg/cards${query}`)
             .then(res => res.json())
-            .then(data => dispatch(receiveCards(name, normalize(data, arrayOf(cardScehma)))))
+            .then(data => dispatch(receiveCards(query, normalize(data, arrayOf(cardScehma)))))
             .catch(e => console.log(e));
     }
 }

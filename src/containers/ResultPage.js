@@ -6,7 +6,9 @@ import { fetchCards } from '../actions'
 
 class ResultPage extends Component {
     componentDidMount() {
-        this.props.fetchCards(this.props.params.name)
+        const { fetchCards, location } = this.props
+
+        fetchCards(location.search)
     }
 
     render() {

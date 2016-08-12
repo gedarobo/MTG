@@ -15,7 +15,7 @@ class DetailPage extends Component {
         return (
             <div>
                 <div>
-                    <button onClick={() => browserHistory.push(`/result/${detail.name}`) }>List</button>
+                    <button onClick={() => browserHistory.goBack() }>List</button>
                 </div>
                 <Detail detail={detail} edition={edition} />
             </div>

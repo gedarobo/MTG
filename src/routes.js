@@ -8,7 +8,7 @@ import DetailPage from './containers/DetailPage'
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={SearchPage} />
-        <Route path="/result/:name" component={ResultPage} />
+        <Route path="/result" component={ResultPage} />
         <Route path="/detail/:id/:multiverseId" component={DetailPage} />
     </Route>
 )

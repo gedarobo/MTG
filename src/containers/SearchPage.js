@@ -5,8 +5,15 @@ import { browserHistory } from 'react-router'
 import CardSearch from '../components/CardSearch'
 
 class SearchPage extends Component {
-    handleSearch(name) {
-        browserHistory.push(`/result/${name}`)
+    handleSearch(searchKeyword) {
+        const paramList = []
+        Object.keys(searchKeyword).forEach(key => {
+            if (searchKeyword[key]) {
+                paramList.push(key + '=' + searchKeyword[key])
+            }
+        })
+
+        browserHistory.push(`/result?${paramList.join('&')}`)
     }
 
     render() {
